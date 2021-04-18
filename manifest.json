@@ -1,19 +1,16 @@
 {
-  "manifest_version": 3,
+  "manifest_version": 2,
   "name": "Screenshot API",
   "description": "Allow websites take screenshot",
   "version": "0.1",
   "background": {
-    "service_worker": "background.js"
+    "scripts": ["background.js"]
   },
-  "permissions": ["storage", "desktopCapture", "activeTab"],
-  "action": {
-    "default_popup": "popup.html",
-    "default_icon": {
-      "16": "/images/screenshot.png",
-      "32": "/images/screenshot.png",
-      "48": "/images/screenshot.png",
-      "128": "/images/screenshot.png"
+  "permissions": ["<all_urls>","desktopCapture"],
+  "content_scripts": [
+    {
+      "matches":["<all_urls>"],
+      "js": ["take-screenshot.js"]
     }
-  }
+  ]
 }
